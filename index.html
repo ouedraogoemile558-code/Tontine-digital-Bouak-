@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1F3A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Tontine Digitale</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<style>
+:root{--navy:#0B1F3A;--navy2:#13305A;--gold:#D4A843;--white:#F7F4EC;--muted:#9FB0C8}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:-apple-system,system-ui,sans-serif;background:var(--navy);color:var(--white);padding-top:env(safe-area-inset-top);padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+#splash{position:fixed;inset:0;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity .6s}
+#splash.hide{opacity:0;pointer-events:none}
+.ring{width:120px;height:120px;border:4px dashed var(--gold);border-radius:50%;animation:spin 8s linear infinite;display:flex;align-items:center;justify-content:center}
+.ring span{animation:spin 8s linear infinite reverse;font-size:44px}
+@keyframes spin{to{transform:rotate(360deg)}}
+#splash h1{margin-top:24px;color:var(--gold);font-size:24px;letter-spacing:1px}
+header{padding:20px}
+header p{color:var(--muted);font-size:14px}
+header h2{font-size:24px;margin-top:4px}
+.balance{margin:0 20px 20px;padding:20px;border-radius:20px;background:linear-gradient(135deg,var(--navy2),#1B4175);border:1px solid var(--gold)}
+.balance small{color:var(--muted)}
+.balance strong{display:block;font-size:32px;color:var(--gold);margin-top:6px}
+.grid{display:grid;gap:14px;padding:0 20px}
+.card{display:flex;gap:14px;align-items:center;padding:18px;border-radius:18px;background:var(--navy2);border:1px solid rgba(212,168,67,.25);cursor:pointer}
+.card:active{transform:scale(.98)}
+.card .ic{font-size:30px}
+.card h3{font-size:17px}
+.card p{font-size:13px;color:var(--muted);margin-top:2px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:var(--navy2);border-top:1px solid rgba(212,168,67,.3);padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+nav a{color:var(--muted);text-align:center;font-size:11px;text-decoration:none}
+nav a.on{color:var(--gold)}
+nav a b{display:block;font-size:22px;font-weight:400}
+</style>
+</head>
+<body>
+<div id="splash"><div class="ring"><span>🤝</span></div><h1>TONTINE DIGITALE</h1></div>
+
+<header><p>Bienvenue 👋</p><h2>Tontine Digitale</h2></header>
+
+<div class="balance"><small>Épargne totale</small><strong>0 FCFA</strong></div>
+
+<div class="grid">
+  <div class="card"><div class="ic">🔄</div><div><h3>Tontine rotative</h3><p>Cotisez à tour de rôle avec votre groupe</p></div></div>
+  <div class="card"><div class="ic">🔒</div><div><h3>Épargne bloquée</h3><p>Mettez de côté jusqu'à une date choisie</p></div></div>
+  <div class="card"><div class="ic">🤲</div><div><h3>Prêt entre membres</h3><p>Empruntez et remboursez au sein du groupe</p></div></div>
+</div>
+
+<nav>
+  <a class="on" href="#"><b>🏠</b>Accueil</a>
+  <a href="#"><b>👥</b>Groupes</a>
+  <a href="#"><b>💳</b>Paiements</a>
+  <a href="#"><b>👤</b>Profil</a>
+</nav>
+
+<script>
+setTimeout(()=>document.getElementById('splash').classList.add('hide'),1800);
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+</script>
+</body>
+</html>
